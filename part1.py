@@ -1,128 +1,150 @@
-from selenium import webdriver #подключение библиотеки
-driver = webdriver.Chrome() #получение объекта веб-драйвера для нужного браузера
+import selenium
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import unittest
+driver = webdriver.Chrome()
 
-url = "https://www.labirint.ru/
+url = "https://www.labirint.ru"
+#Строка для запуска теста
+
+
+class PythonOrgSearch(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
 
 #1
-def test_find_function_normal_text():
-    text1 = "Война и Мир"
-    selenium.get(url)
-    search_field = selenium.find_element_by_id("search-field")
-    search_field.clear
-    search_field.send_keys(text1)
-    btn_submit = selenium.find_element_by_class_name("b-header-b-search-e-btntxt")
-    btn_submit.click()
-    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[type="submit"]'))).click()
+    def test_find_function_normal_text(self):
+        text1 = u"Война и Мир"
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+        driver.quit()
+
 #2
-def test_find_function_long_text():
-    text1 = "Супер очень длинный текст" * 100
-    selenium.get(url)
-    search_field = selenium.find_element_by_id("search-field")
-    search_field.clear
-    search_field.send_keys(text1)
-    btn_submit = selenium.find_element_by_class_name("b-header-b-search-e-btntxt")
-    btn_submit.click()
+    def test_find_function_long_text(self):
+        text1 = "Очень длинный текст" * 1000
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+
 #3
-def test_find_function_empty_text():
-    text1 = ""
-    selenium.get(url)
-    search_field = selenium.find_element_by_id("search-field")
-    search_field.clear
-    search_field.send_keys(text1)
-    btn_submit = selenium.find_element_by_class_name("b-header-b-search-e-btntxt")
-    btn_submit.click(
+    def test_find_function_empty_text(self):
+        text1 = ""
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+
 #4
-def test_find_function_255sim_text():
-    text1 = "мирка" * 51
-    selenium.get(url)
-    search_field = selenium.find_element_by_id("search-field")
-    search_field.clear
-    search_field.send_keys(text1)
-    btn_submit = selenium.find_element_by_class_name("b-header-b-search-e-btntxt")
-    btn_submit.click()
+    def test_find_function_255sim_text(self):
+        text1 = "мирка" * 51
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+
 #5
-def test_find_function_simbols_text():
-    text1 = "$#@%^&"
-    selenium.get(url)
-    search_field = selenium.find_element_by_id("search-field")
-    search_field.clear
-    search_field.send_keys(text1)
-    btn_submit = selenium.find_element_by_class_name("b-header-b-search-e-btntxt")
-    btn_submit.click()
+    def test_find_function_simbols_text(self):
+        text1 = "$#@%^&"
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+
 #6
-def test_find_function_numbers_text():
-    text1 = "123454321"
-    selenium.get(url)
-    search_field = selenium.find_element_by_id("search-field")
-    search_field.clear
-    search_field.send_keys(text1)
-    btn_submit = selenium.find_element_by_class_name("b-header-b-search-e-btntxt")
-    btn_submit.click()
+    def test_find_function_numbers_text(self):
+        text1 = "123454321"
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+
 #7
-def test_message_button():
-    selenium.get(url)
-    message_button = selenium.fint_element_by_xpath\
-        ("/html/body/div[1]/div[5]/div[5]/div/div[1]/div[2]/div/ul/li[3]/a/span[1]/span")
-    message_button.click()
+    def test_message_button(self):
+        driver = self.driver
+        driver.get(url)
+        message_button = driver.find_element(By.CSS_SELECTOR, "div#minwidth > div:nth-of-type(4) > div > div > div:nth-of-type(2) > div > ul > li:nth-of-type(6) > a > span > span > span:nth-of-type(3)")
+
+        message_button.click()
+
 #8
-def test_registration_with_valid_key():
-    selenium.get(url)
-    reg_button = selenium.fint_element_by_xpath\
-        ("//*[@id="minwidth"]/div[5]/div/div[1]/div[2]/div/ul/li[4]/a/span[1]/span[1]/span")
-    reg_button.click()
-    kod = 36A5-444A-A1D3
-    reg_button_2 = selenium.find_element_by_id("_inputnamecode_34")
-    reg_button_2.clear
-    reg_button_2.send_keys(kod)
-    reg_button_3 = selenium.find_element_by_id("g-recap-0-btn")
-    reg_button_3.click()
+    def test_registration_with_valid_key(self):
+        driver = self.driver
+        driver.get(url)
+        reg_button = driver.find_element(By.CSS_SELECTOR, "div#minwidth > div:nth-of-type(4) > div > div > div:nth-of-type(2) > div > ul > li:nth-of-type(4) > a > span > span > span")
+        reg_button.click()
+        kod = "36A5-444A-A1D3"
+        reg_button_2 = driver.find_element(By.ID, "_inputnamecode_34")
+        reg_button_2.clear
+        reg_button_2.send_keys(kod)
+        reg_button_2.submit()
 
 #9
-def test_registration_with_unvalid_key():
-    selenium.get(url)
-    reg_button = selenium.fint_element_by_xpath\
-        ("//*[@id="minwidth"]/div[5]/div/div[1]/div[2]/div/ul/li[4]/a/span[1]/span[1]/span")
-    reg_button.click()
-    kod = 123456789
-    reg_button_2 = selenium.find_element_by_id("_inputnamecode_34")
-    reg_button_2.clear
-    reg_button_2.send_keys(kod)
-    reg_button_3 = selenium.find_element_by_id("g-recap-0-btn")
-    reg_button_3.click()
+    def test_registration_with_unvalid_key(self):
+        driver.get(url)
+        reg_button = driver.find_element(By.ID, '//*[@id="minwidth"]/div[5]/div/div[1]/div[2]/div/ul/li[4]/a/span[1]/span[1]/span')
+        reg_button.click()
+        kod = "123456789"
+        reg_button_2 = driver.find_element(By.ID, "_inputnamecode_34")
+        reg_button_2.clear
+        reg_button_2.send_keys(kod)
+        reg_button_2.submit()
 
 #10
-def test_heart_button():
-    selenium.get(url)
-    heart_button = selenium.fint_element_by_xpath\
-        ("//*[@id="minwidth"]/div[5]/div/div[1]/div[2]/div/ul/li[5]/a")
-    heart_button.click()
+    def test_heart_button(self):
+        driver.get(url)
+        heart_button = driver.find_element(By.CSS_SELECTOR, 'div#minwidth > div:nth-of-type(4) > div > div > div:nth-of-type(2) > div > ul > li:nth-of-type(5) > a > span > span > span')
+        heart_button.click()
 
 #11
-def test_basket_button_empty():
-    selenium.get(url)
-    basket_button = selenium.fint_element_by_xpath\
-        ("//*[@id="minwidth"]/div[5]/div/div[1]/div[2]/div/ul/li[6]")
-    basket_button.click()
+    def test_basket_button_empty(self):
+        driver.get(url)
+        basket_button = driver.find_element(By.CSS_SELECTOR, "div#minwidth > div:nth-of-type(4) > div > div > div:nth-of-type(2) > div > ul > li:nth-of-type(6) > a > span > span > span:nth-of-type(3)")
+        basket_button.click()
 
 #12
-def test_add_to_basket():
-    selenium.get(url)
-    books_button = selenium.find_element_by_xpath \
-        (//*[@id="minwidth"]/div[5]/div/div[1]/div[4]/div/div[1]/ul/li[1]/span/a)
-    books_button.click()
+    def test_location_button(self):
+        driver.get(url)
+        location_button = driver.find_element(By.CLASS_NAME, "region-location-icon-txt")
+        location_button.click()
 
+#13
+    def test_suggestion_form(self):
+        text1 = u"Война и Мир"
+        driver = self.driver
+        driver.get(url)
+        search_field = driver.find_element(By.ID, "search-field")
+        search_field.send_keys(text1)
+        search_field.submit()
+        suggesion_rows = driver.find_element(By.ID, "autohelp_rows")
+        suggesion_rows.submit()
 
+#14
+    def test_location_suggestion_form_normal_text(self):
+        driver.get(url)
+        location_button = driver.find_element(By.CLASS_NAME, "region-location-icon-txt")
+        location_button.click()
+        location_field = driver.find_element(By.ID, "region-post")
+        location_field.send_keys(u"Москва")
+        location_field.submit()
 
-
-
-
-#12
-def test_basket_button_full():
-    selenium.get("https://www.labirint.ru/")
-
-    basket_button = selenium.fint_element_by_xpath \
-        ("//*[@id="minwidth"]/div[5]/div/div[1]/div[2]/div/ul/li[6]")
-    basket_button.click()
-
-
+#15
+    def test_location_suggestion_form_long_text(self):
+        text1 = u"Очень длинный текст" * 1000
+        driver.get(url)
+        location_button = driver.find_element(By.CLASS_NAME, "region-location-icon-txt")
+        location_button.click()
+        location_field = driver.find_element(By.ID, "region-post")
+        location_field.send_keys(text1)
+        location_field.submit()
 
